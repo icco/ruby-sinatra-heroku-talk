@@ -9,4 +9,4 @@
 
 !SLIDE
 # Questions?
-### <http://natwelch.com/talks/ruby-sinatra>
+### <http://natwelch.com/talks/r-s-h>
