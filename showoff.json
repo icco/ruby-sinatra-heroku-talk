@@ -1,0 +1,11 @@
+{ 
+   "name": "Fast Ruby Web Development", 
+   "sections": [
+      { "section": "title"   },
+      { "section": "intro"   },
+      { "section": "rvm"     },
+      { "section": "sinatra" },
+      { "section": "heroku"  },
+      { "section": "closing" },
+   ]
+}
