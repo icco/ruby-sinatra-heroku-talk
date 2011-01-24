@@ -6,6 +6,6 @@
       { "section": "rvm"     },
       { "section": "sinatra" },
       { "section": "heroku"  },
-      { "section": "closing" },
+      { "section": "closing" }
    ]
 }
