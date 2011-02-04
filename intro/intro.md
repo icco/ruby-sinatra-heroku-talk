@@ -8,7 +8,7 @@
 # Requirements
  * 200MB free space
  * internet connection
- * an hour
+ * an hour (maybe longer, this is addicting)
  * curiosity
  * git
  * curl
