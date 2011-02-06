@@ -23,7 +23,13 @@ Alright we've got everything installed.
     git add README.md
     git commit -m "Initialize!"
 
-Now we have a git repo.
+Quick aside:
+
+    echo '*swp' > .gitignore
+    git add .gitignore
+    git commit -m "Adding a git ignore file."
+
+Now we have a git repo (that doesn't commit our vim swap files).
 
     vim site.rb
 
@@ -144,9 +150,25 @@ We will need to write up `views/done.rb` now.
 
 Wheee. Alright, let's run and test. (Yes there are some bugs...)
 
-Cool, that works. Now, how do we get it on the internet?
+Cool, that works. Now, how do we get it on the internet? We use Heroku!
 
- * heroku init
- * heroku deploy
- * pimp github.
+Heroku runs using [rack](http://rack.rubyforge.org/). To launch sinatra in rack, you need to put the following into `config.ru`.
 
+    require 'site'
+    run Sinatra::Application
+
+We installed heroku earlier, so now we can just: 
+
+    heroku create talktopigs-`whoami`
+
+Hmm... That seemed far too simple... Now you just push?
+
+    git add .
+    git commit -m "Huzzah! an App."
+    git push heroku master
+
+HOT SKIPPY! Notice your app is now running on the interwebs. You can read the [heroku docs](http://docs.heroku.com/) on how to change the app name on put on a special domain.
+
+BUT WAIT! We want to share our code with the world. Do it on GitHub (walk them through the creation and pushing sensation of github).
+
+Tah Dah. Questions?
