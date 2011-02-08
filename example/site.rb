@@ -11,7 +11,7 @@ post '/' do
    words = params[:awesome]
    
    vowels = %w{a e i o u}
-   words = words.split(/[^\w\']+/).map {|word|
+   translated = words.gsub(/\w+/) {|word|
       # Periods, single letters
       if word.length <= 1 then
          word
@@ -24,7 +24,8 @@ post '/' do
       else
          word[1..word.length] + "-#{word[0]}ay"
       end
-   }.join " "
+   }
 
-   erb :done, :locals => {:words => words}
+   # Display the file views/done.erb with these variables.
+   erb :done, :locals => {:words => words, :translated => translated}
 end

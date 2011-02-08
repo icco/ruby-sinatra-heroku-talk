@@ -121,15 +121,23 @@ We need to now tell sinatra to deal with this form request.
        words = params[:awesome]
 
        vowels = %w{a e i o u}
-       words = words.split.map {|word|
-          if vowels.include? word[0] then
+       translated = words.gsub(/\w+/) {|word|
+          # Periods, single letters
+          if word.length <= 1 then
+             word
+
+          # Vowel rules according to wikipedia
+          elsif vowels.include? word[0] then
              word + '-ay'
+
+          # Normal words
           else
              word[1..word.length] + "-#{word[0]}ay"
           end
-       }.join " "
+       }
 
-       erb :done, :locals => {:words => words}
+       # Display the file views/done.erb with these variables.
+       erb :done, :locals => {:words => words, :translated => translated}
     end
 
 We will need to write up `views/done.rb` now.
@@ -140,10 +148,17 @@ We will need to write up `views/done.rb` now.
           <title>Talk To Pigs Dot Com</title>
        </head>
        <body>
-          <h1>Pig Latin</h1>
+          <h1>Pig Latin Translator</h1>
+          <h2>Before</h2>
           <p>
           <%= words %>
           </p>
+
+          <h2>After</h2>
+          <p>
+          <%= translated %>
+          </p>
+
           <p><a href=".">Back...</a></p>
        </body>
     </html>
@@ -157,7 +172,7 @@ Heroku runs using [rack](http://rack.rubyforge.org/). To launch sinatra in rack,
     require 'site'
     run Sinatra::Application
 
-We installed heroku earlier, so now we can just: 
+We installed heroku earlier, so now we can just:
 
     heroku create talktopigs-`whoami`
 
@@ -172,3 +187,10 @@ HOT SKIPPY! Notice your app is now running on the interwebs. You can read the [h
 BUT WAIT! We want to share our code with the world. Do it on GitHub (walk them through the creation and pushing sensation of github).
 
 Tah Dah. Questions?
+
+### Other things we could talk about if you wanted:
+
+ * GitHub and Git
+ * DB access on Heroku
+ * less (css easy mode)
+
