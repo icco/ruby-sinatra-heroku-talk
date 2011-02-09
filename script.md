@@ -4,10 +4,10 @@ This is basically a list of commands and code that I will be writing. Feel free 
 
 ## Install stuff
 
-If you didn't install stuff when we started, it's time now.
+If you didn't install stuff when we started, it's time now. These first set of directions are for your own machine, if you are at Cal Poly, and are on a computer science lab machine, you can ssh into vogon and follow Mark's instructions to save you a compile.
 
     $ bash < <( curl --location http://is.gd/k2wjrp )
-    cat '[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"' >> ~/.bashrc
+    echo '[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"' >> ~/.bashrc
     source ~/.bashrc
     rvm info
     rvm install 1.9.2
@@ -15,13 +15,29 @@ If you didn't install stuff when we started, it's time now.
     rvm info
     gem install sinatra heroku
 
+If you are trying to do this on CSC lab machines, you may not have enough space.  Fortunately, my asshole of a roommate has precompiled it. so you can follow this instead.
+
+    cd
+    ln -s /home/mgius/.rvm .
+    echo '[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"' >> ~/.bashrc
+    source ~/.bashrc
+
+You cannot install new gems using this environment, but the heroku and sinatra gems have been pre-installed.
+
+If you want to be able to install new gems, do the following (requires approx 100MB free space on your profile)
+
+    cd $HOME
+    cp -R /home/mgius/.rvm .
+    echo '[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"' >> ~/.bashrc
+    source ~/.bashrc
+
 Alright we've got everything installed.
 
     mkdir test-project
     touch README.md
     git init
     git add README.md
-    git commit -m "Initialize!"
+    git commit -m "Initialize."
 
 Quick aside:
 
@@ -48,19 +64,13 @@ Alright, now let's deploy it locally.
 
 BAM. We have a website.
 
-Alright. Now we want sexy webpages. Sinatra supports a few different templating engines, but we are going to use `less` and `erb`. [ERB](http://www.ruby-doc.org/stdlib/libdoc/erb/rdoc/classes/ERB.html) is built into the Ruby stdlib, but we will need to install less.
-
-    gem install less
+Alright. Now we want sexy webpages. Sinatra supports a few different templating engines, but we are going to use `erb`. [ERB](http://www.ruby-doc.org/stdlib/libdoc/erb/rdoc/classes/ERB.html) is built into the Ruby stdlib.
 
 Let's open `site.rb` back up.
 
     #!/usr/bin/env ruby
 
     require 'sinatra'
-
-    get '/hi' do
-       "Hello World!"
-    end
 
     get '/' do
        erb :index
@@ -71,7 +81,6 @@ The basic folder structure of a sinatra app is as follows.
     .
     |-- site.rb
     |-- config.ru
-    |-- Rakefile
     |-- public
     |   `-- script.js
     `-- views
@@ -171,6 +180,12 @@ Heroku runs using [rack](http://rack.rubyforge.org/). To launch sinatra in rack,
 
     require 'site'
     run Sinatra::Application
+
+Also, we need to tell Heroku that we need sinatra to be installed. To do this, we create a `.gems` file. This file tells Heroku what gems to install on boot.
+
+    echo "sinatra" > .gems
+    git add .gems
+    git commit -m "Adding gems file."
 
 We installed heroku earlier, so now we can just:
 
