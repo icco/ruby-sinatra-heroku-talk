@@ -189,9 +189,11 @@ Also, we need to tell Heroku that we need sinatra to be installed. To do this, w
 
 We installed heroku earlier, so now we can just:
 
-    heroku create talktopigs-`whoami`
+    heroku create --stack bamboo-mri-1.9.2 talktopigs-`whoami`
 
-Hmm... That seemed far too simple... Now you just push?
+`--stack bamboo-mri-1.9.2` says that you want to use Ruby 1.9.2 on Heroku. The last paramater specifies the name of the app. You can leave this blank and heroku will come up with a name for you.
+
+Hmm... That seemed pretty simple... Now you just push?
 
     git add .
     git commit -m "Huzzah! an App."
