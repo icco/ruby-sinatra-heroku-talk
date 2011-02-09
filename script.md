@@ -5,6 +5,7 @@ This is basically a list of commands and code that I will be writing. Feel free 
 ## Install stuff
 
 If you didn't install stuff when we started, it's time now.
+** If you're trying to do this on lab machines, go down a bit**
 
     $ bash < <( curl --location http://is.gd/k2wjrp )
     echo '[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"' >> ~/.bashrc
@@ -15,8 +16,19 @@ If you didn't install stuff when we started, it's time now.
     rvm info
     gem install sinatra heroku
 
-Alright we've got everything installed.
 
+### Vogon install
+If you are trying to do this on CSC lab machines, you don't actually have enough free space to make this work.  Fortunately, a super attractive roommate of mine has made it available for your use.  Do the following instead of the above.
+
+    cd $HOME
+    ln -s /home/mgius/.rvm .
+    echo '[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"' >> ~/.bashrc
+    source ~/.bashrc
+
+You cannot install new gems using this environment, but the heroku and sinatra gems have been pre-installed.
+
+## Moving on
+Alright we've got everything installed.
     mkdir test-project
     touch README.md
     git init
