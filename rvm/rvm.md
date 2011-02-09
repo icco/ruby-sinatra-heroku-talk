@@ -14,7 +14,7 @@
 
 !SLIDE
 
-    $ bash < <( curl http://is.gd/k2wjrp )
+    $ bash < <( curl --location http://is.gd/k2wjrp )
 
 ### <http://is.gd/k2wjrp> points to <http://rvm.beginrescueend.com/releases/rvm-install-head>
 
