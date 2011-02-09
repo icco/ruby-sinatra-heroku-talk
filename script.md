@@ -27,6 +27,15 @@ If you are trying to do this on CSC lab machines, you don't actually have enough
 
 You cannot install new gems using this environment, but the heroku and sinatra gems have been pre-installed.
 
+If you want to be able to install new gems, do the following (requires approx 100MB free space on your profile)
+
+    cd $HOME
+    cp -R /home/mgius/.rvm .
+    echo '[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"' >> ~/.bashrc
+    source ~/.bashrc
+
+
+
 ## Moving on
 Alright we've got everything installed.
     mkdir test-project
