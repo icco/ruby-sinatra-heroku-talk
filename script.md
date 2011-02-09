@@ -7,7 +7,7 @@ This is basically a list of commands and code that I will be writing. Feel free 
 If you didn't install stuff when we started, it's time now.
 
     $ bash < <( curl --location http://is.gd/k2wjrp )
-    cat '[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"' >> ~/.bashrc
+    echo '[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"' >> ~/.bashrc
     source ~/.bashrc
     rvm info
     rvm install 1.9.2
