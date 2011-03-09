@@ -21,7 +21,7 @@ Alright we've got everything installed.
     touch README.md
     git init
     git add README.md
-    git commit -m "Initialize!"
+    git commit -m "Initialize"
 
 Quick aside:
 
